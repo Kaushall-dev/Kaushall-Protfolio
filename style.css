@@ -933,12 +933,18 @@ body {
     align-items: start;
 }
 
+.dropdown-image {
+    width: 100%;
+    /* Remove fixed height */
+}
+
 .dropdown-image img {
     width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border: 1px solid rgba(255, 0, 51, 0.2);
+    height: auto; /* Image dictates the height */
+    display: block;
+    max-height: 600px; /* Optional: prevents vertical images from being too long */
 }
+
 
 .dropdown-text p {
     color: #888;
