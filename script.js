@@ -1,47 +1,69 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // --- 1. CORE ELEMENTS ---
     const cursorDot = document.querySelector(".cursor-dot");
     const cursorOutline = document.querySelector(".cursor-outline");
     const loader = document.querySelector(".loader");
+    const backTop = document.querySelector('.back-top');
 
-    // 1. Cursor Engine
+    // --- 2. CURSOR & MOUSE ENGINE ---
     window.addEventListener("mousemove", (e) => {
         const { clientX: x, clientY: y } = e;
+        
+        // Dot follows exactly
         cursorDot.style.left = `${x}px`;
         cursorDot.style.top = `${y}px`;
-        cursorOutline.animate({ left: `${x}px`, top: `${y}px` }, { duration: 400, fill: "forwards" });
+        
+        // Outline follows with lag for smooth feel
+        cursorOutline.animate(
+            { left: `${x}px`, top: `${y}px` }, 
+            { duration: 400, fill: "forwards" }
+        );
+
+        // Update CSS variables for the radial background glow
         document.body.style.setProperty('--x', `${x}px`);
         document.body.style.setProperty('--y', `${y}px`);
     });
 
-    // 2. Preloader
+    // --- 3. PRELOADER LOGIC ---
     window.addEventListener("load", () => {
-        setTimeout(() => { loader.style.transform = "translateY(-100%)"; }, 1000);
+        setTimeout(() => { 
+            loader.style.transform = "translateY(-100%)"; 
+        }, 1000);
     });
 
-    // 3. Scroll Controller (Progress Bar & Sticky About)
+    // --- 4. SCROLL CONTROLLER (Progress Bar & Sticky About) ---
     window.addEventListener("scroll", () => {
         const scrollPos = window.scrollY;
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        document.querySelector(".scroll-progress").style.width = `${(scrollPos / totalHeight) * 100}%`;
+        
+        // Scroll Progress Bar
+        const progressBar = document.querySelector(".scroll-progress");
+        if (progressBar) {
+            progressBar.style.width = `${(scrollPos / totalHeight) * 100}%`;
+        }
 
-        // Sticky "About" Math Logic
+        // Sticky "About" Math Logic (Only for Desktop)
         const stickySection = document.querySelector('.about-sticky');
-        if (stickySection) {
+        if (stickySection && window.innerWidth > 1000) {
             const stickyTop = stickySection.offsetTop;
             const stickyHeight = stickySection.offsetHeight;
             const viewportHeight = window.innerHeight;
-            
+
             const relativeScroll = scrollPos - stickyTop;
             const scrollRange = stickyHeight - viewportHeight;
+
+            // Calculate 0 to 1 progress
             const progress = Math.max(0, Math.min(1, relativeScroll / scrollRange));
-
             const contents = document.querySelectorAll('.sticky-content');
-            const stepSize = 1 / contents.length;
 
-            contents.forEach((content, index) => {
-                const start = index * stepSize;
-                const end = (index + 1) * stepSize;
-                if (progress >= start && progress < end) {
+            if (relativeScroll < 50) { 
+                contents.forEach(content => content.classList.remove('active'));
+                return; 
+            }
+
+            contents.forEach((content, i) => {
+                const step = 1 / contents.length;
+                if (progress >= i * step && progress < (i + 1) * step) {
                     content.classList.add('active');
                 } else {
                     content.classList.remove('active');
@@ -50,75 +72,85 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 4. Reveal Observer
+    // --- 5. REVEAL ON SCROLL (Intersection Observer) ---
+    const observerOptions = { threshold: 0.1 };
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add("active");
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+            }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
+
     document.querySelectorAll(".section-reveal").forEach(el => revealObserver.observe(el));
 
-    // 5. Magnetic Hover Effects
+    // --- 6. MAGNETIC EFFECT ---
     document.querySelectorAll(".magnetic").forEach(el => {
         el.addEventListener("mousemove", (e) => {
+            if(window.innerWidth < 1000) return;
             const rect = el.getBoundingClientRect();
             const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
             const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
             el.style.transform = `translate(${x}px, ${y}px)`;
         });
-        el.addEventListener("mouseleave", () => { el.style.transform = "translate(0, 0)"; });
+        el.addEventListener("mouseleave", () => {
+            el.style.transform = "translate(0, 0)";
+        });
     });
 
-    // 6. Back To Top
-    document.querySelector('.back-top').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // --- 7. BACK TO TOP ---
+    if (backTop) {
+        backTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // --- 8. PROJECT DROPDOWN & FILTER SYSTEM ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card, .project-card-mini, .project-item');
+
+    // Dropdown Toggle Logic
+    projectCards.forEach(card => {
+        const header = card.querySelector('.project-header');
+        if (header) {
+            header.addEventListener('click', () => {
+                const isActive = card.classList.contains('active');
+
+                // Close all other projects for a clean "Accordion" feel
+                projectCards.forEach(c => c.classList.remove('active'));
+
+                // If it wasn't active, open it
+                if (!isActive) {
+                    card.classList.add('active');
+                }
+            });
+        }
     });
-});
 
-// Global Video Modal Functions
-function openVideo(videoId, isShort) {
-    const modal = document.getElementById("videoModal");
-    const player = document.getElementById("videoPlayer");
-    const content = document.getElementById("modalContent");
-    if (isShort) content.classList.add("is-short");
-    else content.classList.remove("is-short");
-    player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1`;
-    modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
-}
+    // Master Filter Logic
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update UI for buttons
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-function closeVideo() {
-    const modal = document.getElementById("videoModal");
-    const player = document.getElementById("videoPlayer");
-    player.src = "";
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-}
+            const filterValue = btn.getAttribute('data-filter');
 
-window.onclick = function(event) {
-    const modal = document.getElementById("videoModal");
-    if (event.target == modal) { closeVideo(); }
-}
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                
+                // Close any open dropdowns when switching filters
+                card.classList.remove('active');
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('glass-form');
-
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // prevent default browser submit
-
-    const formData = new FormData(form);
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
-    }).then(() => {
-      alert('Thank you for your message! We will get back to you soon.');
-      form.reset();
-    }).catch((error) => {
-      alert('Oops! There was a problem submitting your form.');
-      console.error(error);
+                if (filterValue === 'all' || category === filterValue) {
+                    card.style.display = ''; // Returns to default (flex/block/grid)
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                } else {
+                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                }
+            });
+        });
     });
-  });
 });

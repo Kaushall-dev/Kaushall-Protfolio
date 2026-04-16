@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;500;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="icon" type="image/jpg" href="./assete/image/back-g.jpg">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -48,9 +48,9 @@
             
                 <div class="roles-marquee">
                     <div class="marquee-inner">
-                        <span>PROGRAMMER / ANIMATOR / VIDEO EDITOR / AR DEV / SOFTWARE DEV / WEB DEV / YOUTUBER / </span>
-                        <span>PROGRAMMER / ANIMATOR / VIDEO EDITOR / AR DEV / SOFTWARE DEV / WEB DEV / YOUTUBER / </span>
-                        <span>PROGRAMMER / ANIMATOR / VIDEO EDITOR / AR DEV / SOFTWARE DEV / WEB DEV / YOUTUBER / </span>
+                        <span>PROGRAMMER / ANIMATOR / VIDEO EDITOR / AR DEV / SOFTWARE DEV / WEB DEV / YOUTUBER /</span>
+                        <span>PROGRAMMER / ANIMATOR / VIDEO EDITOR / AR DEV / SOFTWARE DEV / WEB DEV / YOUTUBER /</span>
+                        <span>PROGRAMMER / ANIMATOR / VIDEO EDITOR / AR DEV / SOFTWARE DEV / WEB DEV / YOUTUBER /</span>
                     </div>
                 </div>
             
@@ -111,94 +111,178 @@
                 </div>
                 <div class="skill-item section-reveal">
                     <h3>YouTuber</h3>
-                    <p>Game and tech content creation.</p>
+                    <p>Car Spotting Content.</p>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="projects-section">
-            <h2 class="section-label">SELECTED WORK</h2>
-            <div class="project-list">
-                <div class="project-item section-reveal">
-                    <div class="project-info">
-                        <span>WEB APPLICATION</span>
-                        <h3>Portfolio Website</h3>
-                        <p>A high-end interactive portfolio built with vanilla JS and CSS animations.</p>
-                        <div class="project-actions">
-                            <a href="#" class="btn-link magnetic"><i class="fab fa-github"></i> VIEW CODE</a>
-                            <a href="#" class="btn-link magnetic"><i class="fas fa-external-link-alt"></i> LIVE DEMO</a>
-                        </div>
-                    </div>
-                    <div class="project-visual magnetic">
-                        <div class="project-img-inner"><img src="./Assets/image/Protfolio.png" alt="Portfolio"></div>
-                    </div>
-                </div>
-
-                <div class="project-item section-reveal reverse">
-                    <div class="project-info">
-                        <span>JAVA / BACKEND</span>
-                        <h3>Student Management</h3>
-                        <p>Scalable software architecture for managing academic records.</p>
-                        <div class="project-actions">
-                            <a href="https://github.com/WOLFkaushall/Student-Infomation-System-Project.git" target="_blank" class="btn-link magnetic"><i class="fab fa-github"></i> VIEW CODE</a>
-                        </div>
-                    </div>
-                    <div class="project-visual magnetic">
-                        <div class="project-img-inner"><img src="./Assets/image/sims.png" alt="Backend"></div>
-                    </div>
-                </div>
-
-                <div class="project-item section-reveal">
-                    <div class="project-info">
-                        <span>UE5 / BLENDER / PREMIERE</span>
-                        <h3>SOFT REALITY</h3>
-                        <p>A cinematic film created for competition based on true incidents. High fidelity rendering and editing.</p>
-                        <div class="project-actions">
-                            <a href="https://youtu.be/EA_sPCyWOmU?si=3fY4hKs6IXY-w3H0" target="_blank" class="btn-link magnetic"><i class="fas fa-play"></i> WATCH FILM</a>
-                        </div>
-                    </div>
-                    <div class="project-visual magnetic">
-                        <div class="project-img-inner"><img src="./Assets/image/T.png" alt="Movie"></div>
-                    </div>
-                </div>
+        <section id="projects" class="projects-section section-reveal">
+            <div class="section-header-flex">
+                <h2 class="section-label">SELECTED WORK</h2>
+                <a href="projects.html" class="explore-link magnetic">EXPLORE ALL —&gt;</a>
             </div>
-        </section>
 
-        <section id="youtube" class="youtube-section section-reveal">
-            <h2 class="section-label">LATEST CONTENT</h2>
-            <div class="video-grid">
-                <div class="video-card magnetic">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video">
-                        <div class="play-icon">▶</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="app">App Dev</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+                <button class="filter-btn" data-filter="movies">Movies</button>
+            </div>
+        
+            <div class="project-dropdown-list">
+                <div class="project-card" data-category="web">
+                    <div class="project-header">
+                        <div class="project-meta">
+                            <span class="project-num">01</span>
+                            <h3 class="project-title-mini">SRI JAI AGENCY</h3>
+                        </div>
+                        <div class="header-right">
+                            <span class="project-tag">WEB DEV</span>
+                            <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
+                        </div>
                     </div>
-                    <div class="video-meta">
-                        <span>Car Spotting Coimbatore</span>
-                        <h4>Vellfire Spotted</h4>
+                    <div class="project-dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-image"><img src="./Assets/image/srijai.png" alt="Sri Jai"></div>
+                            <div class="dropdown-text">
+                                <p>A professional agency website with infinite scrolling and interactive UI components.</p>
+                                <div class="dropdown-actions">
+                                    <a href="https://srijaiagency.in/" target="_blank" class="btn-mini">LIVE SITE</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             
-                <div class="video-card magnetic">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/y6120QOlsfU/maxresdefault.jpg" alt="Short">
-                        <div class="play-icon">▶</div>
+                <div class="project-card" data-category="app">
+                    <div class="project-header">
+                        <div class="project-meta">
+                            <span class="project-num">02</span>
+                            <h3 class="project-title-mini">DAYFLOW</h3>
+                        </div>
+                        <div class="header-right">
+                            <span class="project-tag">APP DEV</span>
+                            <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
+                        </div>
                     </div>
-                    <div class="video-meta">
-                        <span>Car Spotting Coimbatore</span>
-                        <h4>Defender Spotted</h4>
+                    <div class="project-dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-image"><img src="./Assets/image/dayflow.png" alt="Dayflow"></div>
+                            <div class="dropdown-text">
+                                <p>Context-aware habit tracking system built for lifestyle productivity.</p>
+                                <div class="dropdown-actions">
+                                    <a href="#" class="btn-mini">WATCH DEMO</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="project-card" data-category="app">
+                    <div class="project-header">
+                        <div class="project-meta">
+                            <span class="project-num">03</span>
+                            <h3 class="project-title-mini">ADAS CO-PILOT</h3>
+                        </div>
+                        <div class="header-right">
+                            <span class="project-tag">ENGINEERING</span>
+                            <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
+                        </div>
+                    </div>
+                    <div class="project-dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-image"><img src="./Assets/image/adas.png" alt="ADAS"></div>
+                            <div class="dropdown-text">
+                                <p>Virtual assistant for driving safety, detecting harsh maneuvers and road hazards.</p>
+                                <div class="dropdown-actions">
+                                    <a href="#" class="btn-mini">VIEW DOCS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="project-card" data-category="web">
+                    <div class="project-header">
+                        <div class="project-meta">
+                            <span class="project-num">04</span>
+                            <h3 class="project-title-mini">S.KAUSHALL PORTFOLIO</h3>
+                        </div>
+                        <div class="header-right">
+                            <span class="project-tag">UI/UX</span>
+                            <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
+                        </div>
+                    </div>
+                    <div class="project-dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-image"><img src="./Assets/image/portfolio.png" alt="Portfolio"></div>
+                            <div class="dropdown-text">
+                                <p>Personal brand showcase featuring a 90s cinematic aesthetic and custom physics-based cursor.</p>
+                                <div class="dropdown-actions">
+                                    <a href="#" class="btn-mini">VIEW CODE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="project-card" data-category="web">
+                    <div class="project-header">
+                        <div class="project-meta">
+                            <span class="project-num">05</span>
+                            <h3 class="project-title-mini">Student Information Management System</h3>
+                        </div>
+                        <div class="header-right">
+                            <span class="project-tag">WEBSITE</span>
+                            <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
+                        </div>
+                    </div>
+                    <div class="project-dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-image"><img src="./Assets/image/sims.png" alt="Sims"></div>
+                            <div class="dropdown-text">
+                                <p>High-intensity racing simulation cinematic edits featuring custom asset integration.</p>
+                                <div class="dropdown-actions">
+                                    <a href="#" class="btn-mini">VIEW CODE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="more-projects-link">
+                <a href="projects.html" class="btn secondary magnetic">Explore Full Archive</a>
+            </div>
+        </section>
+
+        <section class="youtube-section section-reveal">
+            <h2 class="section-label">LATEST CONTENT</h2>
+
+            <div class="featured-video-container">
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/EA_sPCyWOmU" title="Soft Reality" allowfullscreen></iframe>
+                    <div class="video-scanline"></div>
+                </div>
+
+                <div class="video-details">
+                    <span class="video-tag">FEATURED EDIT</span>
+                    <h1 class="video-title">SOFT REALITY</h1>
+                    <p class="video-description">A deep dive into 3D environment design and procedural rendering using Unreal Engine 5.</p>
+                    <div class="video-actions">
+                        <a href="https://youtu.be/EA_sPCyWOmU" target="_blank" class="btn primary">VIEW ON YOUTUBE</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div id="videoModal" class="video-modal">
+        <!--<div id="videoModal" class="video-modal">
             <div class="modal-container">
                 <span class="close-modal" onclick="closeVideo()">&times;</span>
                 <div id="modalContent" class="modal-content">
                     <iframe id="videoPlayer" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <section id="contact" class="contact-section section-reveal">
             <div class="contact-grid">
@@ -207,7 +291,7 @@
                     <h2>SECURE A COLLAB.</h2>
                     <div class="social-links">
                         <a href="https://www.youtube.com/channel/UCKbQ2ZHpfBudpCdHHT3j7MQ?sub_confirmation=1" target="_blank" class="magnetic"><i class="fab fa-youtube"></i> YOUTUBE</a>
-                        <a href="#" target="_blank" class="magnetic"><i class="fab fa-github"></i> GITHUB</a>
+                        <a href="https://github.com/Kaushall-dev" target="_blank" class="magnetic"><i class="fab fa-github"></i> GITHUB</a>
                         <a href="#" target="_blank" class="magnetic"><i class="fab fa-instagram"></i> INSTAGRAM</a>
                         <a href="#" target="_blank" class="magnetic"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
                     </div>
@@ -237,7 +321,6 @@
                         </button>
                     </div>
             
-                    <!-- optional status message area -->
                     <p class="form-status" aria-live="polite"></p>
                 </form>
             </div>
