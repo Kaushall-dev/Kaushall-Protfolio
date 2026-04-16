@@ -933,7 +933,6 @@ body {
     align-items: start;
 }
 
-<<<<<<< HEAD
 .dropdown-image {
     width: 100%;
     /* Remove fixed height */
@@ -946,8 +945,6 @@ body {
     max-height: 600px; /* Optional: prevents vertical images from being too long */
 }
 
-
-=======
 .dropdown-image img {
     width: 100%;
     aspect-ratio: 16/9;
@@ -955,7 +952,6 @@ body {
     border: 1px solid rgba(255, 0, 51, 0.2);
 }
 
->>>>>>> ca2d296 (New Update to website)
 .dropdown-text p {
     color: #888;
     line-height: 1.8;
