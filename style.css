@@ -748,30 +748,6 @@ body {
   transform: translateY(0);
 }
 
-/* ============================================================
-   MOBILE SUPPORT ADD-ON (DO NOT REMOVE)
-   ============================================================ */
-@media (max-width: 1000px) {
-  .project-item, .project-item.reverse, .contact-grid {
-    flex-direction: column;
-    gap: 3rem;
-  }
-  .nav-links { display: none; }
-  .hero-image-wrapper { width: 250px; height: 320px; }
-  .about-sticky { height: auto; padding: 5rem 0; }
-  .sticky-wrapper { position: relative; height: auto; flex-direction: column; }
-  .sticky-content { position: relative; opacity: 1; transform: none; margin-bottom: 3rem; }
-  .glitch-text { font-size: 3.5rem; }
-  .cta-group { display: flex; flex-direction: column; gap: 10px; width: 100%; }
-  .btn { width: 100%; margin: 5px 0; }
-  .footer-bottom { flex-direction: column; text-align: center; gap: 15px; }
-}
-
-@media (hover: none) {
-  * { cursor: auto !important; }
-  .cursor-dot, .cursor-outline { display: none; }
-}
-
 /* Filter Styling */
 .filter-container {
     text-align: center;
@@ -1206,17 +1182,6 @@ body {
     height: 300px;
 }
 
-@media (max-width: 768px) {
-    .btn-cinematic {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 20px 0;
-        letter-spacing: 2px;
-        font-size: 0.75rem;
-    }
-}
-
 .project-desc-large {
     font-family: var(--font-secondary); /* Keeps it clean and readable */
     font-size: 1.1rem;
@@ -1226,46 +1191,6 @@ body {
 .btn-cinematic .btn-text {
     font-family: var(--font-mono); /* Keeps the techy look */
     font-weight: 500;
-}
-
-/* ============================================================
-   MOBILE FIXES (Add to the very end of your file)
-   ============================================================ */
-@media (max-width: 768px) {
-    .dropdown-inner {
-        grid-template-columns: 1fr !important; /* Stacks image above text */
-        padding: 20px !important;
-    }
-    
-    .project-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 1.5rem !important;
-    }
-
-    .project-num {
-        font-size: 0.8rem;
-        margin-bottom: 5px;
-    }
-
-    .project-desc-large {
-        font-size: 0.85rem !important; /* Smaller text for smaller screens */
-        line-height: 1.6 !important;
-    }
-    
-    .dropdown-inner {
-        gap: 30px !important; /* Forces more space between elements */
-    }
-
-    .project-header {
-        padding: 2rem 1rem !important;
-        gap: 15px; /* Ensures space between Number and Title */
-    }
-    
-    .project-title-mini {
-        font-size: 1rem !important;
-        line-height: 1.4;
-    }
 }
 
 .dropdown-text p:not(.project-desc-large) {
@@ -1310,4 +1235,117 @@ body {
     line-height: 2.1 !important; /* High breathing room for Syncopate font */
     max-width: 80%; /* Prevents lines from getting too long/heavy */
     margin-bottom: 2rem;
+}
+
+
+/* ============================================================
+   MOBILE CINEMATIC ENGINE (High-Transition Version)
+   ============================================================ */
+@media (max-width: 900px) {
+    /* Fluid Section Headers */
+    .glitch-text {
+        font-size: 3.5rem !important;
+        letter-spacing: -2px;
+        transition: transform 0.8s var(--transition-smooth);
+    }
+
+    /* Mobile Project Cards - Interaction Logic */
+    .project-header {
+        padding: 1.5rem 1rem !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        background: linear-gradient(90deg, rgba(255, 0, 51, 0.05) 0%, transparent 100%);
+    }
+
+    .project-card.active .project-header {
+        background: var(--accent-dim);
+    }
+
+    /* Expanding Dropdown Transition */
+    .dropdown-inner {
+        grid-template-columns: 1fr !important; /* Stack for mobile */
+        padding: 1rem !important;
+        gap: 20px;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.6s var(--transition-smooth);
+    }
+
+    .project-card.active .dropdown-inner {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* Responsive Image Sizing (Full Width UI) */
+    .dropdown-image {
+        height: auto !important;
+        max-height: 400px;
+        border: 1px solid rgba(255, 0, 51, 0.2);
+    }
+
+    .dropdown-image img {
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    /* Tech-Bar String Layout for Mobile */
+    .project-tech-bar {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 1.5rem;
+    }
+
+    /* Sticky About Section - Mobile Transition */
+    .about-sticky {
+        height: auto !important;
+        padding: 4rem 5% !important;
+    }
+
+    .sticky-wrapper {
+        position: relative !important;
+        height: auto !important;
+        padding: 0 !important;
+    }
+
+    .sticky-content {
+        position: relative !important;
+        opacity: 1 !important;
+        transform: none !important;
+        margin-bottom: 4rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 0, 51, 0.1);
+    }
+
+    /* Mobile Cinematic Button Expansion */
+    .btn-cinematic {
+        width: 100%;
+        text-align: center;
+        padding: 22px 0;
+        font-size: 0.7rem;
+        background: rgba(255, 0, 51, 0.05);
+    }
+
+    /* Archive Filters (Horizontal Scroll) */
+    .filter-buttons {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 0 5% 1rem 5%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Hide scrollbar */
+    }
+
+    .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+}
+
+/* Touch-Specific Animations */
+@media (hover: none) {
+    .project-card:active {
+        background: rgba(255, 0, 51, 0.05);
+        transition: 0.2s;
+    }
 }
