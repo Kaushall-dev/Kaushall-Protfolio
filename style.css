@@ -5,6 +5,7 @@
   --text: #ffffff;
   --font-main: "Inter", sans-serif;
   --font-heading: "Syncopate", sans-serif;
+  --font-mono: 'Space Mono', monospace; 
   --transition-smooth: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -12,7 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none;
+  cursor: none; /* Keeps your custom cursor active */
 }
 
 ::selection {
@@ -60,7 +61,7 @@ body {
   background: var(--accent);
   border-radius: 50%;
   z-index: 10001;
-  pointer-events: none;
+  pointer-events: none; 
   transform: translate(-50%, -50%);
 }
 
@@ -71,7 +72,7 @@ body {
   border: 1px solid var(--accent);
   border-radius: 50%;
   z-index: 10000;
-  pointer-events: none;
+  pointer-events: none; 
   transform: translate(-50%, -50%);
   transition: 0.15s ease-out;
 }
@@ -137,13 +138,14 @@ body {
    HERO SECTION
    ============================================================ */
 .hero {
-  height: 100vh;
+  height: auto; /* Change from 100vh if you want it tighter */
+  min-height: 60vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-top: 140px; /* FIX: Space for Nav */
+  padding-top: 100px; /* Reduced from 140px */
 }
 
 .hero-content {
@@ -168,7 +170,7 @@ body {
   font-size: clamp(2rem, 10vw, 7rem);
   position: relative;
   color: #fff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .glitch-text::before,
@@ -412,8 +414,26 @@ body {
 /* ============================================================
    PROJECTS SECTION
    ============================================================ */
+.projects-section .project-desc-large {
+    font-family: var(--font-heading) !important;
+    font-size: 1rem; /* Slightly smaller size prevents clashing */
+    line-height: 1.8; /* Increased from 1.7 to stop text overlap */
+    letter-spacing: 1px; /* Adds breathing room between letters */
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+}
+
+/* Fix for the Stack/Status labels to keep them separated */
+.projects-section .info-label {
+    margin-top: 2rem;
+    line-height: 2;
+    display: block;
+}
+
 .projects-section {
   padding: 10rem 10%;
+  font-family: var(--font-heading) !important;
 }
 
 .project-item {
@@ -443,6 +463,67 @@ body {
   font-family: var(--font-heading);
   font-size: 2.5rem;
   margin: 1rem 0;
+}
+
+.project-info {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03); /* Very subtle dark overlay */
+    border-radius: 4px;
+    border-right: 1px solid rgba(255, 0, 51, 0.1); /* Subtle side accent */
+}
+
+.project-desc-large {
+    font-family: var(--font-heading) !important;
+    font-size: 0.95rem; /* Slightly smaller prevents collisions */
+    line-height: 2.2 !important; /* SIGNIFICANT INCREASE: Total separation */
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+/* Fix for the Stack/Tech labels */
+.info-label {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    margin-top: 2.5rem; /* INCREASED: Separates labels from the paragraph above */
+    margin-bottom: 0.5rem; /* Adds space before the value (e.g. WORDPRESS) */
+    display: block;
+    text-transform: uppercase;
+}
+
+/* Container for the horizontal metadata */
+.project-tech-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin: 2.5rem 0;
+    border-top: 1px solid rgba(255, 0, 51, 0.1);
+    padding-top: 2rem;
+}
+
+/* Individual Tech Item Style */
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tech-item .info-label {
+    margin: 0; /* Resets your old overlapping margins */
+    font-size: 0.6rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.tech-item span:not(.info-label) {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    color: #fff;
+    letter-spacing: 1px;
 }
 
 .project-visual {
@@ -694,7 +775,8 @@ body {
 /* Filter Styling */
 .filter-container {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-top: -2rem; /* Use a negative margin to pull it UP toward the Archive text */
+    margin-bottom: 2rem; /* Keep some space for the projects below */
 }
 
 .filter-label {
@@ -717,7 +799,7 @@ body {
     color: #fff;
     padding: 0.8rem 1.5rem;
     font-family: var(--font-heading);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -794,7 +876,7 @@ body {
 /* 3. The Minimalist Link Style */
 .explore-link {
     font-family: var(--font-heading);
-    font-size: 0.6rem;
+    font-size: 1rem;
     color: #666; /* Muted gray to start */
     text-decoration: none;
     letter-spacing: 2px;
@@ -873,20 +955,18 @@ body {
 
 /* Project Card Container */
 .project-card {
-    border-bottom: 1px solid rgba(255, 0, 51, 0.1);
-    transition: var(--transition-smooth);
-    overflow: hidden;
-    background: transparent;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+    cursor: pointer;
+    overflow: visible; /* Ensure numbers aren't cut off */
 }
 
-/* Header (The Clickable Part) */
 .project-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 0;
-    cursor: pointer;
-    transition: 0.3s;
+    padding: 2.5rem 2rem; /* Added horizontal padding */
 }
 
 .project-header:hover {
@@ -894,12 +974,23 @@ body {
     background: rgba(255, 0, 51, 0.02);
 }
 
-.project-meta { display: flex; align-items: center; gap: 20px; }
-.project-num { color: var(--accent); font-family: var(--font-heading); font-size: 0.7rem; opacity: 0.5; }
+.project-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem; /* Space between 01 and Title */
+}
+
+.project-num {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    opacity: 0.8;
+}
+
 .project-title-mini { font-family: var(--font-heading); font-size: 1.2rem; }
 
 .header-right { display: flex; align-items: center; gap: 30px; }
-.project-tag { font-size: 0.6rem; border: 1px solid #333; padding: 4px 10px; color: #888; }
+.project-tag { font-size: 0.8rem; border: 1px solid #333; padding: 4px 10px; color: #888; }
 
 /* The Toggle Icon */
 .dropdown-icon {
@@ -935,20 +1026,37 @@ body {
 
 .dropdown-image {
     width: 100%;
-    /* Remove fixed height */
+    /* Remove fixed height so it can auto-adjust */
+    height: auto; 
+    min-height: 300px;
+    background: rgba(255, 255, 255, 0.02); /* Subtle backing for transparent images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 4px;
 }
 
 .dropdown-image img {
     width: 100%;
-    height: auto; /* Image dictates the height */
-    display: block;
-    max-height: 600px; /* Optional: prevents vertical images from being too long */
+    height: auto; /* Allows the image to dictate the height */
+    max-height: 70vh; /* Prevents 9:16 images from becoming infinitely long */
+    
+    /* THE KEY: 'contain' ensures the whole image is visible */
+    object-fit: contain; 
+    object-position: center;
+    
+    /* Maintains the high-end cinematic feel */
+    transition: transform 0.6s var(--transition-smooth);
+}
+
+/* Optional: Slight zoom on hover without clipping the edges */
+.project-card:hover .dropdown-image img {
+    transform: scale(1.02);
 }
 
 .dropdown-image img {
-    width: 100%;
     aspect-ratio: 16/9;
-    object-fit: cover;
     border: 1px solid rgba(255, 0, 51, 0.2);
 }
 
@@ -1045,4 +1153,161 @@ body {
     line-height: 1.6;
     margin-bottom: 2rem;
     max-width: 400px;
+}
+
+/* PC Cinematic Button for DayFlow */
+.btn-cinematic {
+    position: relative;
+    display: inline-block;
+    padding: 18px 40px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-mono) !important;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+}
+
+.btn-cinematic:hover {
+    color: #000 !important; /* The fix for visibility */
+    background: var(--accent);
+    box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+}
+
+.btn-cinematic .btn-text {
+    position: relative;
+    z-index: 3;
+}
+
+.btn-cinematic:hover .btn-text {
+    color: #000 !important;
+}
+
+/* Subtle glow effect behind the button on PC */
+.btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: 1;
+}
+
+.btn-cinematic:hover .btn-glow {
+    width: 300px;
+    height: 300px;
+}
+
+@media (max-width: 768px) {
+    .btn-cinematic {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        letter-spacing: 2px;
+        font-size: 0.75rem;
+    }
+}
+
+.project-desc-large {
+    font-family: var(--font-secondary); /* Keeps it clean and readable */
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-cinematic .btn-text {
+    font-family: var(--font-mono); /* Keeps the techy look */
+    font-weight: 500;
+}
+
+/* ============================================================
+   MOBILE FIXES (Add to the very end of your file)
+   ============================================================ */
+@media (max-width: 768px) {
+    .dropdown-inner {
+        grid-template-columns: 1fr !important; /* Stacks image above text */
+        padding: 20px !important;
+    }
+    
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 1.5rem !important;
+    }
+
+    .project-num {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+
+    .project-desc-large {
+        font-size: 0.85rem !important; /* Smaller text for smaller screens */
+        line-height: 1.6 !important;
+    }
+    
+    .dropdown-inner {
+        gap: 30px !important; /* Forces more space between elements */
+    }
+
+    .project-header {
+        padding: 2rem 1rem !important;
+        gap: 15px; /* Ensures space between Number and Title */
+    }
+    
+    .project-title-mini {
+        font-size: 1rem !important;
+        line-height: 1.4;
+    }
+}
+
+.dropdown-text p:not(.project-desc-large) {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+}
+
+.project-tech-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem; /* Wide gap prevents text "attacking" each other */
+    margin: 3rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 0, 51, 0.1);
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tech-item .info-label {
+    font-family: var(--font-mono) !important;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.tech-item span:not(.info-label) {
+    font-family: var(--font-heading) !important;
+    font-size: 0.85rem;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Fix for the Description to ensure no intersection */
+.project-desc-large {
+    line-height: 2.1 !important; /* High breathing room for Syncopate font */
+    max-width: 80%; /* Prevents lines from getting too long/heavy */
+    margin-bottom: 2rem;
 }

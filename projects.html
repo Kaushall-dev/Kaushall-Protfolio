@@ -35,17 +35,19 @@
             </section>
         
             <section id="projects-archive" class="projects-section">
-                <div class="filter-container" style="margin-bottom: 5rem;">
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">ALL</button>
-                        <button class="filter-btn" data-filter="web">WEB DEV</button>
-                        <button class="filter-btn" data-filter="app">APP DEV</button>
-                        <button class="filter-btn" data-filter="editing">Movies</button>
-                        <button class="filter-btn" data-filter="editing">EDITING</button>
+                    <div class="filter-container" style="margin-bottom: 5rem;">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">ALL</button>
+                            <button class="filter-btn" data-filter="web">WEB DEV</button>
+                            <button class="filter-btn" data-filter="app">APP DEV</button>
+                            <button class="filter-btn" data-filter="editing">EDITING</button>
+                            <button class="filter-btn" data-filter="movies">Moives</button>
+                        </div>
                     </div>
-                </div>
-        
-            <div class="project-dropdown-list">
+                
+                <div class="project-dropdown-list">
+
+                <!-- New Project Section-->
                 <div class="project-card" data-category="web">
                     <div class="project-header">
                         <div class="project-meta">
@@ -59,25 +61,48 @@
                     </div>
                     <div class="project-dropdown-content">
                         <div class="dropdown-inner">
-                            <div class="dropdown-image"><img src="./Assets/image/SriJaiAgency.png" alt="Sri Jai"></div>
-                            <div class="dropdown-text">
-                                <p>Designed and developed an e-commerce website for Sri Jai Agency, a Coimbatore-based distributor specializing in construction materials.</p>
-                            <div class="dropdown-image"><img src="./Assets/image/srijai.png" alt="Sri Jai"></div>
-                            <div class="dropdown-text">
-                                <p>A professional agency website with infinite scrolling and interactive UI components.</p>
-                                <div class="dropdown-actions">
-                                    <a href="https://srijaiagency.in/" target="_blank" class="btn-mini">LIVE SITE</a>
+                            <div class="dropdown-image">
+                                <img src="./Assets/image/SriJaiAgency.png" alt="SRI JAI AGENCY">
+                            </div>
+                            
+                            <div class="project-info">
+                                <span class="info-label">PROJECT TYPE: E-Commerce</span>
+                                <p class="project-desc-large">
+                                    A E-Commerce Website made for SRI JAI AGENCY. This is made with wordpress. This is my first high tire project made for Sri Jai Agency.
+                                </p>
+
+                                <div class="project-tech-bar">
+                                    <div class="tech-item">
+                                        <span class="info-label">Stack</span>
+                                        <span>WordPress</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Core Tech</span>
+                                        <span>E-Commerce</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Status</span>
+                                        <span>Live</span>
+                                    </div>
+                                </div>
+                                <div class="video-actions">
+                                    <a href="https://srijaiagency.in/" target="_blank" class="btn-cinematic">
+                                        <span class="btn-text">LIVE WEB</span>
+                                        <span class="btn-glow"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+                <!-- New PRoject Section END-->
+
+                <!-- New Project Section-->
                 <div class="project-card" data-category="app">
                     <div class="project-header">
                         <div class="project-meta">
                             <span class="project-num">02</span>
-                            <h3 class="project-title-mini">DAYFLOW</h3>
+                            <h3 class="project-title-mini">DAY FLOW - THE INTELLIGENT LIFESTYLE COMPANION</h3>
                         </div>
                         <div class="header-right">
                             <span class="project-tag">APP DEV</span>
@@ -86,43 +111,93 @@
                     </div>
                     <div class="project-dropdown-content">
                         <div class="dropdown-inner">
-                            <div class="dropdown-image"><img src="./Assets/image/DayFlow-pic.jpeg" alt="Dayflow"></div>
-                            <div class="dropdown-image"><img src="./Assets/image/dayflow.png" alt="Dayflow"></div>
-                            <div class="dropdown-text">
-                                <p>Context-aware habit tracking system built for lifestyle productivity.</p>
-                                <div class="dropdown-actions">
-                                    <a href="#" class="btn-mini">WATCH DEMO</a>
+                            <div class="dropdown-image">
+                                <img src="./Assets/image/DayFlow-pic.jpeg" alt="DayFlow App Interface">
+                            </div>
+                            
+                            <div class="project-info">
+                                <span class="info-label">PROJECT TYPE: PRODUCTIVITY OS</span>
+                                <p class="project-desc-large">
+                                    DayFlow is a high-performance productivity ecosystem designed to eliminate decision fatigue through intelligent, context-aware task management.
+                                </p>
+
+                                <div class="project-tech-bar">
+                                    <div class="tech-item">
+                                        <span class="info-label">Stack</span>
+                                        <span>JAVA/XML</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Core Tech</span>
+                                        <span>Location Intelligence</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Status</span>
+                                        <span>Live</span>
+                                    </div>
+                                </div>
+                                <div class="video-actions">
+                                    <a href="./Assets/apk/DayFlow-V1.apk" download="DayFlow-V1.apk" target="_blank" class="btn-cinematic">
+                                        <span class="btn-text">VIEW CODE</span>
+                                        <span class="btn-glow"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
-                <div class="project-card" data-category="app">
+                <!-- New PRoject Section END-->
+
+                <!-- New Project Section-->
+                <div class="project-card" data-category="movies">
                     <div class="project-header">
                         <div class="project-meta">
                             <span class="project-num">03</span>
-                            <h3 class="project-title-mini">ADAS CO-PILOT</h3>
+                            <h3 class="project-title-mini">SOFT REALTY - based On True Story</h3>
                         </div>
                         <div class="header-right">
-                            <span class="project-tag">ENGINEERING</span>
+                            <span class="project-tag">MOVIE</span>
                             <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
                         </div>
                     </div>
                     <div class="project-dropdown-content">
                         <div class="dropdown-inner">
-                            <div class="dropdown-image"><img src="./Assets/image/ADAS-pic.jpeg" alt="ADAS"></div>
-                            <div class="dropdown-image"><img src="./Assets/image/adas.png" alt="ADAS"></div>
-                            <div class="dropdown-text">
-                                <p>Virtual assistant for driving safety, detecting harsh maneuvers and road hazards.</p>
-                                <div class="dropdown-actions">
-                                    <a href="#" class="btn-mini">VIEW DOCS</a>
+                            <div class="dropdown-image">
+                                <img src="./Assets/image/SoftRealty-pic.png" alt="Soft Realty">
+                            </div>
+                            
+                            <div class="project-info">
+                                <span class="info-label">PROJECT TYPE: ANIMATION</span>
+                                <p class="project-desc-large">
+                                    A high-fidelity cinematic reconstruction of a true incident, exploring the boundary between memory and digital truth within a hyper-realistic desert landscape.
+                                </p>
+
+                                <div class="project-tech-bar">
+                                    <div class="tech-item">
+                                        <span class="info-label">SOFTWARE</span>
+                                        <span>BELNDER | UE5</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">ROLES</span>
+                                        <span>Director | Animator</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">FORMAT</span>
+                                        <span>Cinematic Moive</span>
+                                    </div>
+                                </div>
+                                <div class="video-actions">
+                                    <a href="https://www.youtube.com/embed/EA_sPCyWOmU" target="_blank" class="btn-cinematic">
+                                        <span class="btn-text">WATCH</span>
+                                        <span class="btn-glow"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+                <!-- New PRoject Section END-->
+
+                <!-- New Project Section-->
                 <div class="project-card" data-category="web">
                     <div class="project-header">
                         <div class="project-meta">
@@ -130,29 +205,104 @@
                             <h3 class="project-title-mini">S.KAUSHALL PORTFOLIO</h3>
                         </div>
                         <div class="header-right">
-                            <span class="project-tag">UI/UX</span>
+                            <span class="project-tag">WEB DEV</span>
                             <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
                         </div>
                     </div>
                     <div class="project-dropdown-content">
                         <div class="dropdown-inner">
-                            <div class="dropdown-image"><img src="./Assets/image/Protfolio.png" alt="Portfolio"></div>
-                            <div class="dropdown-image"><img src="./Assets/image/portfolio.png" alt="Portfolio"></div>
-                            <div class="dropdown-text">
-                                <p>Personal brand showcase featuring a 90s cinematic aesthetic and custom physics-based cursor.</p>
-                                <div class="dropdown-actions">
-                                    <a href="#" class="btn-mini">VIEW CODE</a>
+                            <div class="dropdown-image">
+                                <img src="./Assets/image/Protfolio.png" alt="PORTFOLIO">
+                            </div>
+                            
+                            <div class="project-info">
+                                <span class="info-label">PROJECT TYPE: WEBSITE</span>
+                                <p class="project-desc-large">
+                                    PORTFOLIO
+                                </p>
+
+                                <div class="project-tech-bar">
+                                    <div class="tech-item">
+                                        <span class="info-label">Stack</span>
+                                        <span>HTML | CSS | JS</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Core Tech</span>
+                                        <span>Protfolio WebSite</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Status</span>
+                                        <span>Live</span>
+                                    </div>
+                                </div>
+                                <div class="video-actions">
+                                    <a href="" target="_blank" class="btn-cinematic">
+                                        <span class="btn-text">VIEW CODE</span>
+                                        <span class="btn-glow"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- New PRoject Section END-->
 
-                <div class="project-card" data-category="web">
+                <!-- New Project Section-->
+                <div class="project-card" data-category="app">
                     <div class="project-header">
                         <div class="project-meta">
                             <span class="project-num">05</span>
-                            <h3 class="project-title-mini">The CUBE</h3>
+                            <h3 class="project-title-mini">ADAS - VIRTUAL CO-PILOT</h3>
+                        </div>
+                        <div class="header-right">
+                            <span class="project-tag">APP</span>
+                            <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
+                        </div>
+                    </div>
+                    <div class="project-dropdown-content">
+                        <div class="dropdown-inner">
+                            <div class="dropdown-image">
+                                <img src="./Assets/image/ADAS-pic.jpeg" alt="ADAS app">
+                            </div>
+                            
+                            <div class="project-info">
+                                <span class="info-label">PROJECT TYPE: VIRUTAL ASSISTANT</span>
+                                <p class="project-desc-large">
+                                    ADAS
+                                </p>
+
+                                <div class="project-tech-bar">
+                                    <div class="tech-item">
+                                        <span class="info-label">Stack</span>
+                                        <span>JAVA | XML</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Core Tech</span>
+                                        <span>VIRUAL ASSISTANT</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Status</span>
+                                        <span>LIVE</span>
+                                    </div>
+                                </div>
+                                <div class="video-actions">
+                                    <a href="" target="_blank" class="btn-cinematic">
+                                        <span class="btn-text">VIEW CODE</span>
+                                        <span class="btn-glow"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New PRoject Section END-->
+
+                <!-- New Project Section-->
+                <div class="project-card" data-category="web">
+                    <div class="project-header">
+                        <div class="project-meta">
+                            <span class="project-num">06</span>
+                            <h3 class="project-title-mini">THE CUBE - GAME</h3>
                         </div>
                         <div class="header-right">
                             <span class="project-tag">WEB GAME</span>
@@ -161,43 +311,70 @@
                     </div>
                     <div class="project-dropdown-content">
                         <div class="dropdown-inner">
-                            <div class="dropdown-image"><img src="./Assets/image/The Cube.png" alt="Web Game"></div>
-                            <div class="dropdown-text">
-                                <p>This is the High-tech web cube game. Using HTML, CSS, JS</p>
-                                <div class="dropdown-actions">
-                                    <a href="#" class="btn-mini">VIEW CODE</a>
+                            <div class="dropdown-image">
+                                <img src="./Assets/image/The Cube.png" alt="THE CUBE app">
+                            </div>
+                            
+                            <div class="project-info">
+                                <span class="info-label">PROJECT TYPE: GAME DEVE</span>
+                                <p class="project-desc-large">
+                                    THE CUDE
+                                </p>
+
+                                <div class="project-tech-bar">
+                                    <div class="tech-item">
+                                        <span class="info-label">Stack</span>
+                                        <span>HTML | CSS | JS</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Core Tech</span>
+                                        <span>GAME DEVLOPMENT</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <span class="info-label">Status</span>
+                                        <span>LIVE</span>
+                                    </div>
+                                </div>
+                                <div class="video-actions">
+                                    <a href="" target="_blank" class="btn-cinematic">
+                                        <span class="btn-text">VIEW CODE</span>
+                                        <span class="btn-glow"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="web">
-                    <div class="project-header">
-                        <div class="project-meta">
-                            <span class="project-num">06</span>
-                            <span class="project-num">05</span>
-                            <h3 class="project-title-mini">Student Information Management System</h3>
+                <!-- New PRoject Section END-->
+
+                    <div class="project-card" data-category="web">
+                        <div class="project-header">
+                            <div class="project-meta">
+                                <span class="project-num">07</span>
+                                <h3 class="project-title-mini">Student Information Management System</h3>
+                            </div>
+                            <div class="header-right">
+                                <span class="project-tag">WEBSITE</span>
+                                <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
+                            </div>
                         </div>
-                        <div class="header-right">
-                            <span class="project-tag">WEBSITE</span>
-                            <div class="dropdown-icon"><i class="fas fa-chevron-down"></i></div>
-                        </div>
-                    </div>
-                    <div class="project-dropdown-content">
-                        <div class="dropdown-inner">
-                            <div class="dropdown-image"><img src="./Assets/image/sims.png" alt="Sims"></div>
-                            <div class="dropdown-text">
-                                <p>A comprehensive Student Information Management System built to manage student data, track attendance, and organize academic records with an intuitive and user-friendly interface.</p>
-                                <p>High-intensity racing simulation cinematic edits featuring custom asset integration.</p>
-                                <div class="dropdown-actions">
-                                    <a href="#" class="btn-mini">VIEW CODE</a>
+                        <div class="project-dropdown-content">
+                            <div class="dropdown-inner">
+                                <div class="dropdown-image"><img src="./Assets/image/sims.png" alt="Sims"></div>
+                                <div class="dropdown-text">
+                                    <p>A comprehensive Student Information Management System built to manage student data, track attendance, and organize academic records with an intuitive and user-friendly interface.</p>
+                                    <p>High-intensity racing simulation cinematic edits featuring custom asset integration.</p>
+                                    <div class="dropdown-actions">
+                                        <a href="#" class="btn-mini">VIEW CODE</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
-            </div>
-        </section>
+            </section>
 
 
     </main>
