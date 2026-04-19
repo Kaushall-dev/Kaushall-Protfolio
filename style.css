@@ -748,30 +748,6 @@ body {
   transform: translateY(0);
 }
 
-/* ============================================================
-   MOBILE SUPPORT ADD-ON (DO NOT REMOVE)
-   ============================================================ */
-@media (max-width: 1000px) {
-  .project-item, .project-item.reverse, .contact-grid {
-    flex-direction: column;
-    gap: 3rem;
-  }
-  .nav-links { display: none; }
-  .hero-image-wrapper { width: 250px; height: 320px; }
-  .about-sticky { height: auto; padding: 5rem 0; }
-  .sticky-wrapper { position: relative; height: auto; flex-direction: column; }
-  .sticky-content { position: relative; opacity: 1; transform: none; margin-bottom: 3rem; }
-  .glitch-text { font-size: 3.5rem; }
-  .cta-group { display: flex; flex-direction: column; gap: 10px; width: 100%; }
-  .btn { width: 100%; margin: 5px 0; }
-  .footer-bottom { flex-direction: column; text-align: center; gap: 15px; }
-}
-
-@media (hover: none) {
-  * { cursor: auto !important; }
-  .cursor-dot, .cursor-outline { display: none; }
-}
-
 /* Filter Styling */
 .filter-container {
     text-align: center;
@@ -1206,17 +1182,6 @@ body {
     height: 300px;
 }
 
-@media (max-width: 768px) {
-    .btn-cinematic {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 20px 0;
-        letter-spacing: 2px;
-        font-size: 0.75rem;
-    }
-}
-
 .project-desc-large {
     font-family: var(--font-secondary); /* Keeps it clean and readable */
     font-size: 1.1rem;
@@ -1226,46 +1191,6 @@ body {
 .btn-cinematic .btn-text {
     font-family: var(--font-mono); /* Keeps the techy look */
     font-weight: 500;
-}
-
-/* ============================================================
-   MOBILE FIXES (Add to the very end of your file)
-   ============================================================ */
-@media (max-width: 768px) {
-    .dropdown-inner {
-        grid-template-columns: 1fr !important; /* Stacks image above text */
-        padding: 20px !important;
-    }
-    
-    .project-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 1.5rem !important;
-    }
-
-    .project-num {
-        font-size: 0.8rem;
-        margin-bottom: 5px;
-    }
-
-    .project-desc-large {
-        font-size: 0.85rem !important; /* Smaller text for smaller screens */
-        line-height: 1.6 !important;
-    }
-    
-    .dropdown-inner {
-        gap: 30px !important; /* Forces more space between elements */
-    }
-
-    .project-header {
-        padding: 2rem 1rem !important;
-        gap: 15px; /* Ensures space between Number and Title */
-    }
-    
-    .project-title-mini {
-        font-size: 1rem !important;
-        line-height: 1.4;
-    }
 }
 
 .dropdown-text p:not(.project-desc-large) {
@@ -1311,3 +1236,411 @@ body {
     max-width: 80%; /* Prevents lines from getting too long/heavy */
     margin-bottom: 2rem;
 }
+
+/* ============================================================
+   PREMIUM MOBILE OVERRIDE (MAX-WIDTH: 768px)
+   ============================================================ */
+@media screen and (max-width: 768px) {
+
+    /* 1. Global Mobile Reset & Smoothness */
+    html {
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight */
+    }
+
+    section {
+        padding: 60px 20px !important; /* Consistent breathing room */
+        overflow: hidden;
+    }
+
+    /* 2. Hero Section - Cinematic Entrance */
+    .hero, #hero {
+        height: 100vh !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left !important;
+        padding: 0 25px !important;
+    }
+
+    .glitch-text {
+        font-size: clamp(3rem, 15vw, 4.5rem) !important;
+        line-height: 0.9 !important;
+        margin-bottom: 10px !important;
+        animation: mobileReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* 3. Project Section - Premium Stacked Cards */
+    .projects-container, .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 30px !important;
+    }
+
+    .project-card {
+        width: 100% !important;
+        margin: 0 0 20px 0 !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 15px !important;
+        backdrop-filter: blur(10px);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+
+    /* Tap Feedback: Card shrinks slightly when pressed */
+    .project-card:active {
+        transform: scale(0.97) !important;
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 20px rgba(255, 0, 51, 0.2);
+    }
+
+    .dropdown-inner {
+        grid-template-columns: 1fr !important; /* Force stack */
+        padding: 20px !important;
+        gap: 20px !important;
+    }
+
+    .dropdown-image {
+        height: auto !important;
+        max-height: 300px;
+        border-radius: 10px;
+    }
+
+    /* 4. The "String Line" Tech Bar - Mobile Optimized */
+    .project-tech-bar {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr; /* Two columns for symmetry */
+        gap: 1.5rem !important;
+        padding: 15px !important;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+    }
+
+    .tech-item span:not(.info-label) {
+        font-size: 0.75rem !important;
+    }
+
+    /* 5. Skills Section - Modern Grid */
+    .skills-flex-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    .skill-item {
+        padding: 20px !important;
+        background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%) !important;
+        border-left: 3px solid var(--accent) !important;
+    }
+
+    /* 6. Navigation - Simplified UI */
+    nav, .nav-container {
+        padding: 15px 20px !important;
+        backdrop-filter: blur(15px);
+        background: rgba(5, 5, 5, 0.8) !important;
+    }
+
+    /* Hide complex nav items, show only essential */
+    .nav-links {
+        display: none; /* Recommended: Use a simple hamburger or hide */
+    }
+
+    /* 7. Contact Section - Full Width Performance */
+    .contact-form, form {
+        width: 100% !important;
+    }
+
+    input, textarea {
+        font-size: 16px !important; /* Prevents iOS auto-zoom on focus */
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* 8. Animations (Hardware Accelerated) */
+    @keyframes mobileReveal {
+        from {
+            opacity: 0;
+            transform: translateY(30px) skewY(2deg);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) skewY(0);
+        }
+    }
+
+    /* Scroll Reveal - Apply this class via JS or use generic selectors */
+    .section-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .section-reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* 9. Floating Action Button (Optional "Back to Top") */
+    .scroll-to-top {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 45px !important;
+        height: 45px !important;
+    }
+}
+
+/* ============================================================
+   MOBILE FIX & OPTIMIZATION (MAX-WIDTH: 768px)
+   ============================================================ */
+@media screen and (max-width: 768px) {
+
+    /* 1. Global Overflow Fix */
+    html, body {
+        overflow-x: hidden; /* Prevents horizontal scrolling */
+        width: 100%;
+    }
+
+    section {
+        padding: 50px 20px !important; /* Forces consistent spacing */
+        height: auto !important; /* Prevents content from being cut off */
+    }
+
+    /* 2. Fix Missing Buttons (View Project / Hire Me) */
+    .btn-container, .hero-buttons, .project-actions {
+        display: flex !important;
+        flex-direction: column !important; /* Stack buttons vertically */
+        align-items: center !important;
+        gap: 15px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin-top: 25px !important;
+    }
+
+    .btn-cinematic, .btn-action, .hire-me-btn {
+        width: 100% !important; /* Full width for thumb-friendly tapping */
+        max-width: 300px;
+        text-align: center;
+        display: block !important;
+    }
+
+    /* 3. About Section Repair */
+    .about-sticky, .sticky-wrapper {
+        display: block !important; /* Disable sticky for mobile to prevent blank gaps */
+        position: relative !important;
+        height: auto !important;
+        padding: 0 !important;
+    }
+
+    .sticky-content {
+        position: relative !important;
+        opacity: 1 !important;
+        transform: none !important;
+        margin-bottom: 40px !important;
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    /* 4. Project Layout Fix (Stacked) */
+    .dropdown-inner {
+        display: flex !important;
+        flex-direction: column !important; /* Stacks image and text */
+        padding: 15px !important;
+        gap: 20px !important;
+    }
+
+    .dropdown-image {
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+    }
+
+    .project-desc-large {
+        font-size: 0.95rem !important;
+        line-height: 1.8 !important; /* Prevents text "attacking" each other */
+        text-align: left !important;
+    }
+
+    /* 5. Alignment & Spacing Fixes */
+    .glitch-text {
+        font-size: 3.2rem !important; /* Downsize large headings */
+        text-align: left !important;
+        margin-bottom: 15px !important;
+    }
+
+    .hero-sub, .section-label {
+        text-align: left !important;
+        margin-left: 0 !important; /* Removes desktop offsets */
+    }
+
+    /* 6. Skills Section Repair */
+    .skills-flex-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Single column layout */
+        gap: 15px !important;
+    }
+
+    .skill-item {
+        padding: 20px !important;
+        width: 100% !important;
+        border-left: 2px solid var(--accent) !important;
+        background: rgba(255, 255, 255, 0.02) !important;
+    }
+
+    /* 7. Contact Form Fix */
+    form, .contact-container {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    input, textarea {
+        width: 100% !important;
+        font-size: 16px !important; /* Prevents iOS auto-zoom on click */
+    }
+
+    /* 8. Light Animations (Mobile Friendly) */
+    .section-reveal {
+        animation: mobileSlideUp 0.8s ease forwards;
+    }
+
+    @keyframes mobileSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* ============================================================
+   MOBILE OVERRIDE: ABOUT & HERO FIX (MAX-WIDTH: 768px)
+   ============================================================ */
+@media screen and (max-width: 768px) {
+
+    /* 1. Prevent Horizontal Overflow globally */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    /* 2. Responsive Heading Scaling (Fixes "The Developer" Overflow) */
+    /* Clamp ensures text never gets too big for the screen or too small to read */
+    .about-sticky h2, 
+    .hero-mobile h1,
+    .glitch-text {
+        font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+        line-height: 1.1 !important;
+        width: 100% !important;
+        word-wrap: break-word;
+        hyphens: auto;
+        text-align: left !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* 3. Hero & About Button Container Fix */
+    /* Centers buttons and ensures they stay within the viewport */
+    .button-group, 
+    .hero-btns,
+    .cta-container {
+        display: flex !important;
+        flex-direction: column !important; /* Forces vertical stacking */
+        align-items: flex-start !important;
+        gap: 15px !important;
+        width: 100% !important;
+        margin-top: 30px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* 4. Button Visibility & Touch Sizing */
+    .btn-cinematic, 
+    .btn-action,
+    .hire-me-btn {
+        width: 100% !important; /* Full width for easy tapping */
+        max-width: 280px;
+        padding: 18px 25px !important;
+        display: inline-flex !important;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* 5. About Section Readability & Stacking */
+    .about-sticky, 
+    .sticky-wrapper {
+        display: block !important; /* Disables complex sticky behavior for mobile */
+        height: auto !important;
+        padding: 40px 0 !important;
+    }
+
+    .sticky-content {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        opacity: 1 !important;
+        transform: none !important; /* Removes desktop slide-in offsets */
+        margin-bottom: 50px !important;
+        padding: 0 10px !important;
+    }
+
+    .sticky-content p {
+        font-size: 1rem !important;
+        line-height: 1.7 !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        max-width: 100% !important;
+    }
+
+    /* 6. Spacing & Margin Fixes */
+    section {
+        padding: 60px 20px !important; /* Uniform breathing room */
+        margin: 0 !important;
+    }
+
+    .section-label {
+        font-size: 0.7rem !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* 7. Skills & Tool Grid Reset */
+    .skills-flex-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Prevents side-by-side squishing */
+        gap: 20px !important;
+    }
+
+    /* 8. Fix Unwanted Empty Gaps */
+    .spacer, 
+    .empty-div {
+        display: none !important; /* Hide desktop-only spacers */
+    }
+}
+
+
+/* Optimization: Tell the browser what will move */
+.project-card, 
+.glitch-text, 
+.btn-cinematic,
+.dropdown-image img {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* Prevent layout shifts during JS initialization */
+.project-card {
+    transform-style: preserve-3d;
+}
+
+/* Add a subtle glow transition for SaaS buttons */
+.btn-cinematic {
+    transition: box-shadow 0.3s ease;
+}
+
+.btn-cinematic:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 51, 0.3);
+}
+
