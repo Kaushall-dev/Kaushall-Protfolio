@@ -3,6 +3,41 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    gsap.utils.toArray(".reveal-line span").forEach(el => {
+        gsap.to(el, {
+            y: 0,
+            duration: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: el,
+                start: "top 90%"
+            }
+        });
+    });
+
+    // ===== SMOOTH SCROLL =====
+    // SAFE LENIS INIT
+    let lenis;
+    
+    if (typeof Lenis !== "undefined") {
+        lenis = new Lenis({
+            duration: 1.2,
+            smooth: true
+        });
+    
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    }
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+        requestAnimationFrame(raf);
+    }
+
     // --- PRO BUTTON EFFECTS ---
 
     document.querySelectorAll(".btn-pro").forEach(btn => {
@@ -131,12 +166,12 @@ document.addEventListener("DOMContentLoaded", () => {
             scrollTrigger: {
                 trigger: card,
                 start: "top 85%",
-                toggleActions: "play none none reverse"
             },
-            y: 60,
+            y: 80,
             opacity: 0,
-            duration: 1.1,
-            ease: "power4.out"
+            scale: 0.95,
+            duration: 1.2,
+            ease: "expo.out"
         });
 
         // Tilt
@@ -295,21 +330,62 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".btn-pro").forEach(btn => {
         let xTo = gsap.quickTo(btn, "x", { duration: 0.3, ease: "power2.out" });
         let yTo = gsap.quickTo(btn, "y", { duration: 0.3, ease: "power2.out" });
-    
+
         btn.addEventListener("mousemove", (e) => {
             if (window.innerWidth < 768) return;
-        
+
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-        
+
             xTo(x * 0.2);
             yTo(y * 0.2);
         });
-    
+
         btn.addEventListener("mouseleave", () => {
             xTo(0);
             yTo(0);
+        });
+    });
+
+    // HERO PARALLAX
+    const hero = document.querySelector(".hero");
+
+    if (hero) {
+        hero.addEventListener("mousemove", (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            gsap.to(".glitch-text", {
+                x: x * 0.3,
+                y: y * 0.3,
+                duration: 0.6
+            });
+
+            gsap.to(".hero-main-img", {
+                x: x * 0.6,
+                y: y * 0.6,
+                duration: 0.6
+            });
+        });
+    }
+
+    // ===== CURSOR HOVER EFFECT =====
+    document.querySelectorAll("a, button").forEach(el => {
+        el.addEventListener("mouseenter", () => {
+            gsap.to(".cursor-outline", {
+                scale: 2,
+                borderColor: "#fff",
+                duration: 0.3
+            });
+        });
+
+        el.addEventListener("mouseleave", () => {
+            gsap.to(".cursor-outline", {
+                scale: 1,
+                borderColor: "var(--accent)",
+                duration: 0.3
+            });
         });
     });
 });

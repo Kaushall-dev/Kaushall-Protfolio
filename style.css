@@ -1,19 +1,26 @@
 :root {
-  --bg: #000000;
+  --bg: #050505;
   --accent: #ff0033;
   --accent-dim: rgba(255, 0, 51, 0.1);
   --text: #ffffff;
+
   --font-main: "Inter", sans-serif;
   --font-heading: "Syncopate", sans-serif;
-  --font-mono: 'Space Mono', monospace; 
-  --transition-smooth: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --font-mono: "Space Mono", monospace;
+
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Z-index system */
+  --z-loader: 1000;
+  --z-nav: 800;
+  --z-cursor: 900;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none; /* Keeps your custom cursor active */
+  cursor: none;
 }
 
 ::selection {
@@ -26,6 +33,7 @@ body {
   color: var(--text);
   font-family: var(--font-main);
   overflow-x: hidden;
+  cursor: none;
 }
 
 /* ============================================================
@@ -1627,14 +1635,6 @@ body {
 /* ============================================================
    1. CORE & SAAS OPTIMIZATION (Global)
    ============================================================ */
-:root {
-    --accent: #ff0033;
-    --bg: #050505;
-    --glass: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.08);
-    --ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
-}
-
 /* Optimization: GPU acceleration for GSAP & SaaS animations */
 .project-card, 
 .glitch-text, 
@@ -1919,4 +1919,13 @@ body::after {
     justify-content: center;
     cursor: pointer;
     will-change: transform;
+}
+
+.reveal-line {
+  overflow: hidden;
+}
+
+.reveal-line span {
+  display: inline-block;
+  transform: translateY(100%);
 }
