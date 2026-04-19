@@ -1619,28 +1619,3 @@ body {
         display: none !important; /* Hide desktop-only spacers */
     }
 }
-
-
-/* Optimization: Tell the browser what will move */
-.project-card, 
-.glitch-text, 
-.btn-cinematic,
-.dropdown-image img {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-}
-
-/* Prevent layout shifts during JS initialization */
-.project-card {
-    transform-style: preserve-3d;
-}
-
-/* Add a subtle glow transition for SaaS buttons */
-.btn-cinematic {
-    transition: box-shadow 0.3s ease;
-}
-
-.btn-cinematic:hover {
-    box-shadow: 0 0 20px rgba(255, 0, 51, 0.3);
-}
-
