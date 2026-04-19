@@ -1,156 +1,315 @@
+// ---------------- GSAP INIT ----------------
+gsap.registerPlugin(ScrollTrigger);
+
 document.addEventListener("DOMContentLoaded", () => {
-    // --- 1. CORE ELEMENTS ---
+
+    // --- PRO BUTTON EFFECTS ---
+
+    document.querySelectorAll(".btn-pro").forEach(btn => {
+
+        // Ripple Click Effect
+        btn.addEventListener("click", function (e) {
+            const ripple = this.querySelector(".ripple");
+
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+
+            ripple.style.width = ripple.style.height = size + "px";
+            ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+            ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+
+            ripple.style.transition = "none";
+            ripple.style.transform = "scale(0)";
+            ripple.style.opacity = "1";
+
+            setTimeout(() => {
+                ripple.style.transition = "all 0.6s ease";
+                ripple.style.transform = "scale(3)";
+                ripple.style.opacity = "0";
+            }, 10);
+        });
+
+        // Strong Magnetic Effect (edge-based)
+        btn.addEventListener("mousemove", (e) => {
+            if (window.innerWidth < 768) return;
+
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            const strength = 0.5; // stronger pull
+
+            gsap.to(btn, {
+                x: x * strength,
+                y: y * strength,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, {
+                x: 0,
+                y: 0,
+                duration: 0.6,
+                ease: "elastic.out(1, 0.3)"
+            });
+        });
+    });
+
+    // ---------- CORE ----------
     const cursorDot = document.querySelector(".cursor-dot");
     const cursorOutline = document.querySelector(".cursor-outline");
     const loader = document.querySelector(".loader");
-    const backTop = document.querySelector('.back-top');
+    const backTop = document.querySelector(".back-top");
+    const isMobile = window.innerWidth < 768;
 
-    // --- 2. CURSOR & MOUSE ENGINE ---
+    // ---------- CURSOR ----------
+    // ===== CURSOR FIX =====
+    let mouseX = 0;
+    let mouseY = 0;
+    let outlineX = 0;
+    let outlineY = 0;
+
     window.addEventListener("mousemove", (e) => {
-        const { clientX: x, clientY: y } = e;
-        
-        // Dot follows exactly
-        cursorDot.style.left = `${x}px`;
-        cursorDot.style.top = `${y}px`;
-        
-        // Outline follows with lag for smooth feel
-        cursorOutline.animate(
-            { left: `${x}px`, top: `${y}px` }, 
-            { duration: 400, fill: "forwards" }
-        );
+        mouseX = e.clientX;
+        mouseY = e.clientY;
 
-        // Update CSS variables for the radial background glow
-        document.body.style.setProperty('--x', `${x}px`);
-        document.body.style.setProperty('--y', `${y}px`);
+        if (cursorDot) {
+            cursorDot.style.transform =
+                `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        }
+
+        // keep your glow effect
+        document.body.style.setProperty('--x', `${mouseX}px`);
+        document.body.style.setProperty('--y', `${mouseY}px`);
     });
 
-    // --- 3. PRELOADER LOGIC ---
+    // smooth outline follow
+    gsap.ticker.add(() => {
+        outlineX += (mouseX - outlineX) * 0.15;
+        outlineY += (mouseY - outlineY) * 0.15;
+
+        if (cursorOutline) {
+            cursorOutline.style.transform =
+                `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+        }
+    });
+
+    // ---------- HERO ANIMATION ----------
+    const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } });
+
+    heroTl
+        .from(".glitch-text", {
+            y: 120,
+            opacity: 0,
+            duration: 1.4,
+            skewY: 6
+        })
+        .from(".hero-tagline", {
+            y: 30,
+            opacity: 0,
+            duration: 1
+        }, "-=1")
+        .from(".hero-image-wrapper", {
+            scale: 0.9,
+            opacity: 0,
+            duration: 1.2
+        }, "-=1")
+        .from(".cta-group .btn", {
+            y: 20,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8
+        }, "-=0.8");
+
+    // ---------- PROJECT CARDS ----------
+    document.querySelectorAll(".project-card").forEach((card) => {
+
+        // Reveal animation
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            },
+            y: 60,
+            opacity: 0,
+            duration: 1.1,
+            ease: "power4.out"
+        });
+
+        // Tilt
+        if (!isMobile) {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                gsap.to(card, {
+                    rotationY: x * 12,
+                    rotationX: -y * 12,
+                    transformPerspective: 1000,
+                    duration: 0.4
+                });
+            });
+
+            card.addEventListener("mouseleave", () => {
+                gsap.to(card, {
+                    rotationY: 0,
+                    rotationX: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+            });
+        }
+    });
+
+    // ---------- IMAGE SCROLL ZOOM ----------
+    document.querySelectorAll(".dropdown-image img").forEach((img) => {
+        gsap.to(img, {
+            scrollTrigger: {
+                trigger: img,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            },
+            scale: 1.15,
+            ease: "none"
+        });
+    });
+
+    // ---------- LOADER ----------
     window.addEventListener("load", () => {
-        setTimeout(() => { 
-            loader.style.transform = "translateY(-100%)"; 
-        }, 1000);
+        setTimeout(() => {
+            if (loader) loader.style.transform = "translateY(-100%)";
+        }, 800);
     });
 
-    // --- 4. SCROLL CONTROLLER (Progress Bar & Sticky About) ---
+    // ---------- SCROLL PROGRESS ----------
     window.addEventListener("scroll", () => {
+
         const scrollPos = window.scrollY;
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        
-        // Scroll Progress Bar
+
         const progressBar = document.querySelector(".scroll-progress");
         if (progressBar) {
             progressBar.style.width = `${(scrollPos / totalHeight) * 100}%`;
         }
 
-        // Sticky "About" Math Logic (Only for Desktop)
-        const stickySection = document.querySelector('.about-sticky');
+        // Sticky About Section
+        const stickySection = document.querySelector(".about-sticky");
+
         if (stickySection && window.innerWidth > 1000) {
+
             const stickyTop = stickySection.offsetTop;
             const stickyHeight = stickySection.offsetHeight;
             const viewportHeight = window.innerHeight;
 
-            const relativeScroll = scrollPos - stickyTop;
-            const scrollRange = stickyHeight - viewportHeight;
-
-            // Calculate 0 to 1 progress
-            const progress = Math.max(0, Math.min(1, relativeScroll / scrollRange));
-            const contents = document.querySelectorAll('.sticky-content');
-
-            if (relativeScroll < 50) { 
-                contents.forEach(content => content.classList.remove('active'));
-                return; 
-            }
+            const progress = (scrollPos - stickyTop) / (stickyHeight - viewportHeight);
+            const contents = document.querySelectorAll(".sticky-content");
 
             contents.forEach((content, i) => {
                 const step = 1 / contents.length;
+
                 if (progress >= i * step && progress < (i + 1) * step) {
-                    content.classList.add('active');
+                    content.classList.add("active");
                 } else {
-                    content.classList.remove('active');
+                    content.classList.remove("active");
                 }
             });
         }
     });
 
-    // --- 5. REVEAL ON SCROLL (Intersection Observer) ---
-    const observerOptions = { threshold: 0.1 };
-    const revealObserver = new IntersectionObserver((entries) => {
+    // ---------- REVEAL ----------
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll(".section-reveal").forEach(el => revealObserver.observe(el));
+    document.querySelectorAll(".section-reveal").forEach(el => observer.observe(el));
 
-    // --- 6. MAGNETIC EFFECT ---
-    document.querySelectorAll(".magnetic").forEach(el => {
-        el.addEventListener("mousemove", (e) => {
-            if(window.innerWidth < 1000) return;
-            const rect = el.getBoundingClientRect();
-            const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
-            const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
-            el.style.transform = `translate(${x}px, ${y}px)`;
-        });
-        el.addEventListener("mouseleave", () => {
-            el.style.transform = "translate(0, 0)";
-        });
-    });
-
-    // --- 7. BACK TO TOP ---
+    // ---------- BACK TO TOP ----------
     if (backTop) {
-        backTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        backTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
 
-    // --- 8. PROJECT DROPDOWN & FILTER SYSTEM ---
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card, .project-card-mini, .project-item');
+    // ---------- PROJECT DROPDOWN ----------
+    const cards = document.querySelectorAll(".project-card");
 
-    // Dropdown Toggle Logic
-    projectCards.forEach(card => {
-        const header = card.querySelector('.project-header');
+    cards.forEach(card => {
+        const header = card.querySelector(".project-header");
+
         if (header) {
-            header.addEventListener('click', () => {
-                const isActive = card.classList.contains('active');
+            header.addEventListener("click", () => {
 
-                // Close all other projects for a clean "Accordion" feel
-                projectCards.forEach(c => c.classList.remove('active'));
+                const isActive = card.classList.contains("active");
 
-                // If it wasn't active, open it
+                cards.forEach(c => c.classList.remove("active"));
+
                 if (!isActive) {
-                    card.classList.add('active');
+                    card.classList.add("active");
+                }
+
+                if (isMobile && navigator.vibrate) {
+                    navigator.vibrate(5);
                 }
             });
         }
     });
 
-    // Master Filter Logic
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update UI for buttons
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    // ---------- FILTER ----------
+    const filterBtns = document.querySelectorAll(".filter-btn");
 
-            const filterValue = btn.getAttribute('data-filter');
+    filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
 
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                
-                // Close any open dropdowns when switching filters
-                card.classList.remove('active');
+            filterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
 
-                if (filterValue === 'all' || category === filterValue) {
-                    card.style.display = ''; // Returns to default (flex/block/grid)
-                    card.style.opacity = '0';
-                    setTimeout(() => card.style.opacity = '1', 50);
+            const filter = btn.dataset.filter;
+
+            cards.forEach(card => {
+                const category = card.dataset.category;
+
+                if (filter === "all" || category === filter) {
+                    card.style.display = "block";
+
+                    gsap.fromTo(card,
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 0.5 }
+                    );
                 } else {
-                    card.style.display = 'none';
-                    card.style.opacity = '0';
+                    card.style.display = "none";
                 }
             });
+        });
+    });
+
+    // ===== SMOOTH BUTTON MAGNETIC =====
+    document.querySelectorAll(".btn-pro").forEach(btn => {
+        let xTo = gsap.quickTo(btn, "x", { duration: 0.3, ease: "power2.out" });
+        let yTo = gsap.quickTo(btn, "y", { duration: 0.3, ease: "power2.out" });
+    
+        btn.addEventListener("mousemove", (e) => {
+            if (window.innerWidth < 768) return;
+        
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+        
+            xTo(x * 0.2);
+            yTo(y * 0.2);
+        });
+    
+        btn.addEventListener("mouseleave", () => {
+            xTo(0);
+            yTo(0);
         });
     });
 });

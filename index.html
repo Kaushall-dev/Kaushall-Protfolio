@@ -13,6 +13,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 </head>
 <body>
 
@@ -55,9 +64,17 @@
                 </div>
             
                 <div class="cta-group">
-                    <a href="#projects" class="btn primary magnetic">View Projects</a>
-                    <a href="#contact" class="btn secondary magnetic">Hire Me</a>
+                    <a href="#projects" class="btn-pro magnetic">
+                        <span class="btn-bg"></span>
+                        <span class="btn-text">View Projects</span>
+                    </a>
+                
+                    <a href="#contact" class="btn-pro outline magnetic">
+                        <span class="btn-bg"></span>
+                        <span class="btn-text">Hire Me</span>
+                    </a>
                 </div>
+                
             </div>
         </section>
 
@@ -366,6 +383,34 @@
             <button class="back-top magnetic">↑ TOP</button>
         </div>
     </footer>
+
+    <script>
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+      smoothTouch: false,
+      easing: (t) => 1 - Math.pow(1 - t, 4)
+    });
+
+    // RAF loop
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // GSAP integration (THIS is the premium part)
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Sync Lenis with ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+    </script>
 
     <script src="script.js"></script>
 </body>
